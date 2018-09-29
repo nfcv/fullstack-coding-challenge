@@ -1,17 +1,16 @@
-import os
-from os.path import join, dirname
-from dotenv import load_dotenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from config import DevelopmentConfig
 
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
+db = SQLAlchemy()
 
-APP_CONFIG = os.environ.get("APP_CONFIG")
+def create_app(config_class=DevelopmentConfig):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
 
-app = Flask(__name__)
-app.config.from_object(APP_CONFIG)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+    db.init_app(app)
+    
+    from translatewise.translations.routes import translations
+    app.register_blueprint(translations)
 
-from translatewise import routes
+    return app

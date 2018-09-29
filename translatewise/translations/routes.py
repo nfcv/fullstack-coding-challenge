@@ -1,10 +1,11 @@
-from flask import render_template, url_for, redirect, flash
-from translatewise import app
+from flask import Blueprint, render_template, url_for, flash
 from translatewise import db
-from translatewise.forms import TranslationForm
-from translatewise.models import Translation
+from translatewise.translations.forms import TranslationForm
+from translatewise.translations.models import Translation
 
-translations = [
+translations = Blueprint('translations', __name__)
+
+data = [
     {
         'en_UK': 'Hello',
         'es_ES': 'Holla',
@@ -22,7 +23,7 @@ translations = [
     }
 ]
 
-@app.route("/", methods=['GET', 'POST'])
+@translations.route("/", methods=['GET', 'POST'])
 def index():
     form = TranslationForm()
     if form.validate_on_submit():
@@ -31,4 +32,4 @@ def index():
         db.session.commit()
         flash(f'Translation added!', 'success')
         
-    return render_template("index.html", translations=translations, form=form)
+    return render_template("index.html", translations=data, form=form)
