@@ -21,7 +21,7 @@ class Translation(db.Model):
         self.text = text
         self.text_lang_code = "en_UK"
         self.translated_lang_code = "es_ES"
-        self.status = RequestStatus.REQUESTED
+        self.status = RequestStatus.REQUESTED.value
 
     def __repr__(self):
-        return '<id {}>'.format(self.id)
+        return f"Translation('{self.text}', '{self.translated}', '{self.word_count}')"
