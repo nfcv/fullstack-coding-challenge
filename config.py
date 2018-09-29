@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 if os.path.isfile('.env'):
     load_dotenv('.env', override=True)
 
+
 class Config(object):
     DEBUG = False
     TESTING = False
@@ -11,6 +12,7 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
     SECRET_KEY = 'super-secret'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 
 class ProductionConfig(Config):
     DEBUG = False

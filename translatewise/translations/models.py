@@ -1,10 +1,12 @@
 from translatewise import db
 from enum import Enum
 
+
 class RequestStatus(Enum):
     PENDING = "PENDING"
     REQUESTED = "REQUESTED"
     TRANSLATED = "TRANSLATED"
+
 
 class Translation(db.Model):
     __tablename__ = 'translations'

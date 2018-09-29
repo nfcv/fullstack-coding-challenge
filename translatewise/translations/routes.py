@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, flash
+from flask import Blueprint, render_template, flash
 from translatewise import db
 from translatewise.translations.forms import TranslationForm
 from translatewise.translations.models import Translation
@@ -22,6 +22,7 @@ data = [
         'status': 'translated'
     }
 ]
+
 
 @translations.route("/", methods=['GET', 'POST'])
 def index():
