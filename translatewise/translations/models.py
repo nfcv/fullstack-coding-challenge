@@ -26,4 +26,8 @@ class Translation(db.Model):
         self.status = RequestStatus.REQUESTED.value
 
     def __repr__(self):
-        return f"Translation('{self.text}', '{self.translated}', '{self.word_count}')"
+        return (
+            f"Translation({self.text}, "
+            f"{self.translated}, "
+            f"{self.word_count}, "
+        )
