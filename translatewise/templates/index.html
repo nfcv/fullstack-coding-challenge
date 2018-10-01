@@ -23,8 +23,8 @@
     <tbody>
       {% for translation in translations %}
         <tr>
-          <th scope="row">{{ translation.en_UK }}</th>
-          <td>{{ translation.es_ES }}</td>
+          <th scope="row">{{ translation.text }}</th>
+          <td>{{ translation.translated }}</td>
           <td>{{ translation.status }}</td>
         </tr>
       {% endfor %}
