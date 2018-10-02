@@ -10,3 +10,4 @@ class FlaskTestCase(BaseTestCase):
     def test_index_post(self):
         response = self.client.post('/')
         assert response.status_code == 200
+

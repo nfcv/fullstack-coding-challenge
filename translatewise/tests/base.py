@@ -1,4 +1,3 @@
-import unittest
 from flask_testing import TestCase
 from translatewise import create_app, db
 
@@ -14,6 +13,3 @@ class BaseTestCase(TestCase):
         db.session.remove()
         db.drop_all()
 
-
-if __name__ == '__main__':
-    unittest.main()
