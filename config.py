@@ -30,3 +30,6 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
+    DEBUG = True
+    WTF_CRSF_ENABLED = False
+    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
