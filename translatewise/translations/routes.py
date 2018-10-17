@@ -1,10 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, flash
-from translatewise import db
 from translatewise.translations.forms import TranslationForm
-from translatewise.translations.models import Translation
 from translatewise.translations.interactors.translation_interactor import TranslationInteractor
-from translatewise.translations.services.get_all_translations_service import GetAllTranslationsService
-
 
 translations = Blueprint('translations', __name__)
 
@@ -15,9 +11,8 @@ def index():
 
     form = TranslationForm()
     if form.validate_on_submit():
-        translation = Translation(form.text.data)
-        db.session.add(translation)
-        db.session.commit()
+        text = form.text.data
+        TranslationInteractor.add_translation(text)
         flash(f'Translation added!', 'success')
         return redirect(url_for("translations.index"))
 

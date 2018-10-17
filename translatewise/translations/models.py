@@ -19,10 +19,10 @@ class Translation(db.Model):
     status = db.Column(db.String(16), nullable=False)
     word_count = db.Column(db.Integer)
 
-    def __init__(self, text):
+    def __init__(self, text, text_lang_code="en_UK", translated_lang_code="es_ES"):
         self.text = text
-        self.text_lang_code = "en_UK"
-        self.translated_lang_code = "es_ES"
+        self.text_lang_code = text_lang_code
+        self.translated_lang_code = translated_lang_code
         self.status = RequestStatus.REQUESTED.value
 
     def __repr__(self):
