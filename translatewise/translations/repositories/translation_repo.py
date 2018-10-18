@@ -1,6 +1,7 @@
 from translatewise.translations.models import Translation
 from translatewise import db
 
+
 class TranslationRepo(object):
 
     @classmethod
@@ -8,7 +9,7 @@ class TranslationRepo(object):
         return Translation.query.filter().all()
 
     @classmethod
-    def create_translation(cls, translation):
+    def create_translation(cls, translation: Translation) -> Translation:
         db.session.add(translation)
         db.session.commit()
         return translation

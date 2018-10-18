@@ -4,12 +4,12 @@ from translatewise.translations.models import Translation
 
 class CreateTranslationService(object):
 
-    def __init__(self, text, text_lang_code="en_UK", translated_lang_code="es_ES"):
+    def __init__(self, text: str, text_lang_code="en_UK", translated_lang_code="es_ES"):
         self.text = text
         self.original_lang_code = text_lang_code
         self.translating_lang_code = translated_lang_code
 
-    def call(self):
+    def call(self) -> Translation:
         translation = Translation(self.text,
                                   self.original_lang_code,
                                   self.translating_lang_code)

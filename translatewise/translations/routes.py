@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
+from flask import Blueprint, render_template, redirect, url_for, flash, request
 from translatewise.translations.forms import TranslationForm
 from translatewise.translations.interactors.translation_interactor import TranslationInteractor
 
@@ -9,7 +9,7 @@ translations = Blueprint('translations', __name__)
 def index():
     data = TranslationInteractor.get_all_translations()
 
-    form = TranslationForm()
+    form = TranslationForm(request.form)
     if form.validate_on_submit():
         text = form.text.data
         TranslationInteractor.add_translation(text)
