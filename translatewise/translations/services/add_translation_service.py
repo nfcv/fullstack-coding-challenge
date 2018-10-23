@@ -2,7 +2,7 @@ from translatewise.translations.repositories.translation_repo import Translation
 from translatewise.translations.models import Translation
 
 
-class CreateTranslationService(object):
+class AddTranslationService(object):
 
     def __init__(self, text: str, text_lang_code="en_UK", translated_lang_code="es_ES"):
         self.text = text

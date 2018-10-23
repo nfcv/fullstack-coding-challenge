@@ -1,5 +1,5 @@
 from translatewise.translations.services.get_all_translations_service import GetAllTranslationsService
-from translatewise.translations.services.create_translation_service import CreateTranslationService
+from translatewise.translations.services.add_translation_service import AddTranslationService
 from translatewise.translations.models import Translation
 
 
@@ -11,4 +11,4 @@ class TranslationInteractor(object):
 
     @classmethod
     def add_translation(cls, text: str) -> Translation:
-        return CreateTranslationService(text).call()
+        return AddTranslationService(text).call()
