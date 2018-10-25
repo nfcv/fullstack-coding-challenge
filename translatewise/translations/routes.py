@@ -17,3 +17,9 @@ def index():
         return redirect(url_for("translations.index"))
 
     return render_template("index.html", translations=data, form=form)
+
+
+@translations.route("/unbabel/callback", methods=['POST'])
+def callback():
+    print(request.data)
+    return '', 204

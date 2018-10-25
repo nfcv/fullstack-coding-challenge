@@ -4,7 +4,7 @@ from translatewise.translations.models import Translation
 
 class AddTranslationService(object):
 
-    def __init__(self, text: str, text_lang_code="en_UK", translated_lang_code="es_ES"):
+    def __init__(self, text: str, text_lang_code="en", translated_lang_code="es"):
         self.text = text
         self.original_lang_code = text_lang_code
         self.translating_lang_code = translated_lang_code

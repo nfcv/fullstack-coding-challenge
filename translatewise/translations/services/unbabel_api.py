@@ -1,10 +1,14 @@
 import json
 import requests
+from config import Config
 
 
 class UnbabelApi(object):
 
-    def __init__(self, username: str, api_key: str):
+    def __init__(self,
+                 username: str = Config.UNBABEL_API_USERNAME,
+                 api_key: str = Config.UNBABEL_API_KEY):
+
         self.username = username
         self.api_key = api_key
         self.base_url = "https://sandbox.unbabel.com/tapi/v2"
@@ -15,6 +19,7 @@ class UnbabelApi(object):
 
     def post_translation(self,
                          text: str,
+                         uid: str,
                          source_language: str,
                          target_language: str,
                          callback_url=None):

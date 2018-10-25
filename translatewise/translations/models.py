@@ -19,7 +19,7 @@ class Translation(db.Model):
     status = db.Column(db.String(16), nullable=False)
     word_count = db.Column(db.Integer)
 
-    def __init__(self, text, text_lang_code="en_UK", translated_lang_code="es_ES"):
+    def __init__(self, text, text_lang_code="en", translated_lang_code="es"):
         self.text = text
         self.text_lang_code = text_lang_code
         self.translated_lang_code = translated_lang_code
