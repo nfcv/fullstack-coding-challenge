@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request
 from translatewise.translations.forms import TranslationForm
 from translatewise.translations.interactors.translation_interactor import TranslationInteractor
 
+
 translations = Blueprint('translations', __name__)
 
 
