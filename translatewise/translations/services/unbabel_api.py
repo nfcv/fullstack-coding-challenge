@@ -28,7 +28,16 @@ class UnbabelApi(object):
         url = f'{self.base_url}/translation/'
         result = requests.post(url, data=json.dumps(payload), headers=self.headers)
 
-        if result.status_code not in (201, 202):
+        if result.status_code not in range(200, 204):
+            raise Exception("Unexpected Error:", result.content)
+
+        return result.json()
+
+    def fetch_translation(self, uid: str):
+        url = f'{self.base_url}/translation/{uid}/'
+        result = requests.get(url, headers=self.headers)
+
+        if result.status_code not in range(200, 204):
             raise Exception("Unexpected Error:", result.content)
 
         return result.json()
