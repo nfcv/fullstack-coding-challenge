@@ -7,7 +7,7 @@ translations = Blueprint('translations', __name__)
 
 
 @translations.route("/", methods=['GET', 'POST'])
-def index():
+def home():
     data = TranslationInteractor.get_all_translations()
 
     form = TranslationForm(request.form)
@@ -15,12 +15,6 @@ def index():
         text = form.text.data
         TranslationInteractor.add_translation(text)
         flash(f'Translation added!', 'success')
-        return redirect(url_for("translations.index"))
+        return redirect(url_for("translations.home"))
 
     return render_template("index.html", translations=data, form=form)
-
-
-@translations.route("/unbabel/callback", methods=['POST'])
-def callback():
-    print(request.data)
-    return '', 204
