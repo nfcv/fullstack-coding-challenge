@@ -8,13 +8,15 @@ translations = Blueprint('translations', __name__)
 
 @translations.route("/", methods=['GET', 'POST'])
 def home():
-    data = TranslationInteractor.get_all_translations()
-
     form = TranslationForm(request.form)
-    if form.validate_on_submit():
-        text = form.text.data
-        TranslationInteractor.add_translation(text)
-        flash(f'Translation added!', 'success')
+    if request.method == "POST":
+        translation = TranslationInteractor.submit(form=form)
+        if translation:
+            flash(f'Translation added!', 'success')
+        else:
+            error = form.errors['text'][0]
+            flash(error, 'danger')
         return redirect(url_for("translations.home"))
 
-    return render_template("index.html", translations=data, form=form)
+    translations = TranslationInteractor.translations()
+    return render_template("index.html", translations=translations, form=form)

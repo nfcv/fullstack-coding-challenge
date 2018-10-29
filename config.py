@@ -14,7 +14,7 @@ class Config(object):
     UNBABEL_API_KEY = os.environ['UNBABEL_API_KEY']
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
     SECRET_KEY = 'super-secret'
-    SQLALCHEMY_TRACK_MODIFICATIONS = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class ProductionConfig(Config):
