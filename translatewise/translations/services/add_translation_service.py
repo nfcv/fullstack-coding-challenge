@@ -14,4 +14,4 @@ class AddTranslationService(object):
                                   self.original_lang_code,
                                   self.translating_lang_code)
 
-        return TranslationRepo.create_translation(translation)
+        return TranslationRepo.create(translation=translation)

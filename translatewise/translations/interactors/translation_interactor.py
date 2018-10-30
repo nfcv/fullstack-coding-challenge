@@ -24,4 +24,8 @@ class TranslationInteractor(object):
     @classmethod
     def translations(cls) -> [Translation]:
         translations = GetAllTranslationsService().call()
+        current_app.task_queue.enqueue(
+            'translatewise.translations.worker.update_translations_status',
+            result_ttl=60000
+        )
         return translations
