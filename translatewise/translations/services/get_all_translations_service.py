@@ -4,4 +4,4 @@ from translatewise.translations.repositories.translation_repo import Translation
 class GetAllTranslationsService(object):
 
     def call(self):
-        return TranslationRepo.find_all()
+        return TranslationRepo.find_all_ordered_by_word_count()

@@ -2,7 +2,7 @@ from translatewise.translations.services.get_all_translations_service import Get
 from translatewise.translations.services.add_translation_service import AddTranslationService
 from translatewise.translations.models import Translation
 from translatewise.translations.forms import TranslationForm
-from flask import current_app
+from flask import current_app, flash
 
 
 class TranslationInteractor(object):
@@ -17,8 +17,11 @@ class TranslationInteractor(object):
                 translation,
                 result_ttl=60000
             )
+            flash(f'Translation added!', 'success')
             return translation
 
+        error = form.errors['text'][0]
+        flash(error, 'danger')
         return None
 
     @classmethod

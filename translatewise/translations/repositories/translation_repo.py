@@ -5,8 +5,8 @@ from translatewise import db
 class TranslationRepo(object):
 
     @classmethod
-    def find_all(cls) -> [Translation]:
-        return Translation.query.filter().all()
+    def find_all_ordered_by_word_count(cls) -> [Translation]:
+        return Translation.query.filter().order_by(Translation.word_count).all()
 
     @classmethod
     def find_by_id(cls, id: int)-> Translation:
@@ -17,9 +17,15 @@ class TranslationRepo(object):
         return Translation.query.filter(Translation.status != RequestStatus.TRANSLATED.value).all()
 
     @classmethod
-    def update_status(cls, translation: Translation, status: RequestStatus) -> Translation:
-        translation.status = status.value
-        db.session.commit()
+    def update_status_pending(cls, translation: Translation):
+        translation.status = RequestStatus.PENDING.value
+        return translation
+
+    @classmethod
+    def update_status_translated(cls, translation: Translation, translated_text: str) -> Translation:
+        translation.status = RequestStatus.TRANSLATED.value
+        translation.translated = translated_text
+        translation.word_count = len(translated_text)
         return translation
 
     @classmethod
