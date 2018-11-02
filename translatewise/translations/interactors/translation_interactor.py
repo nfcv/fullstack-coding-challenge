@@ -1,22 +1,22 @@
-from translatewise.translations.services.get_all_translations_service import GetAllTranslationsService
-from translatewise.translations.services.add_translation_service import AddTranslationService
 from translatewise.translations.models import Translation
 from translatewise.translations.forms import TranslationForm
-from flask import current_app, flash
+from translatewise.translations.services.translation_service import TranslationService
+from translatewise.translations.services.translation_queue_service import TranslationQueueService
+from flask import flash
 
 
 class TranslationInteractor(object):
 
-    @classmethod
-    def submit(cls, form: TranslationForm) -> Translation or None:
+    def __init__(self, translation_service: TranslationService, queue_service: TranslationQueueService):
+        self.translation_service = translation_service
+        self.queue = queue_service
+
+    def request_translation(self, form: TranslationForm) -> Translation or None:
         if form.validate_on_submit():
             text = form.text.data
-            translation = AddTranslationService(text).call()
-            current_app.task_queue.enqueue(
-                'translatewise.translations.worker.post_translation',
-                translation,
-                result_ttl=60000
-            )
+            translation = Translation(text=text)
+            self.translation_service.add(translation)
+            self.queue.enqueue_post_translation(translation)
             flash(f'Translation added!', 'success')
             return translation
 
@@ -24,11 +24,7 @@ class TranslationInteractor(object):
         flash(error, 'danger')
         return None
 
-    @classmethod
-    def translations(cls) -> [Translation]:
-        translations = GetAllTranslationsService().call()
-        current_app.task_queue.enqueue(
-            'translatewise.translations.worker.update_translations_status',
-            result_ttl=60000
-        )
+    def get_translations(self) -> [Translation]:
+        translations = self.translation_service.get_ordered_by_word_count()
+        self.queue.enqueue_update_translations_status()
         return translations

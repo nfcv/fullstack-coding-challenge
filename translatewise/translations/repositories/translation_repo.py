@@ -4,32 +4,31 @@ from translatewise import db
 
 class TranslationRepo(object):
 
-    @classmethod
-    def find_all_ordered_by_word_count(cls) -> [Translation]:
+    def find_all(self) -> [Translation]:
+        return Translation.query.filter().all()
+
+    def find_all_ordered_by_word_count(self) -> [Translation]:
         return Translation.query.filter().order_by(Translation.word_count).all()
 
-    @classmethod
-    def find_by_id(cls, id: int)-> Translation:
+    def find_by_id(self, id: int)-> Translation:
         return Translation.query.get(id)
 
-    @classmethod
-    def find_untranslated(cls) -> [Translation]:
+    def find_untranslated(self) -> [Translation]:
         return Translation.query.filter(Translation.status != RequestStatus.TRANSLATED.value).all()
 
-    @classmethod
-    def update_status_pending(cls, translation: Translation):
+    def update_status_pending(self, translation: Translation):
         translation.status = RequestStatus.PENDING.value
+        db.session.commit()
         return translation
 
-    @classmethod
-    def update_status_translated(cls, translation: Translation, translated_text: str) -> Translation:
+    def update_status_translated(self, translation: Translation, translated_text: str) -> Translation:
         translation.status = RequestStatus.TRANSLATED.value
         translation.translated = translated_text
         translation.word_count = len(translated_text)
+        db.session.commit()
         return translation
 
-    @classmethod
-    def create(cls, translation: Translation) -> Translation:
+    def create(self, translation: Translation) -> Translation:
         db.session.add(translation)
         db.session.commit()
         return translation
