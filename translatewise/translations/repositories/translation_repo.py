@@ -3,7 +3,7 @@ from translatewise import db
 
 
 class TranslationRepo(object):
-
+    
     def find_all(self) -> [Translation]:
         return Translation.query.filter().all()
 

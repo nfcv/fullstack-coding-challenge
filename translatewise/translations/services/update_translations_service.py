@@ -3,19 +3,11 @@ from translatewise.translations.models import Translation
 from translatewise.translations.unbabel_api import UnbabelApi
 
 
-class TranslationJobsService(object):
+class UpdateTranslationsService(object):
 
     def __init__(self, api: UnbabelApi, repository: TranslationRepo):
         self.api = api
         self.repository = repository
-
-    def post_translation(self, translation: Translation):
-        return self.api.post_translation(
-            text=translation.text,
-            uid=translation.id,
-            source_language=translation.text_lang_code,
-            target_language=translation.translated_lang_code
-        )
 
     def update_translations(self) -> [Translation]:
         translations = self.repository.find_untranslated()

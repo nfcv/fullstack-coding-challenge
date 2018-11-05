@@ -18,7 +18,7 @@ def create_app(config_class=DevelopmentConfig):
 
     db.init_app(app)
 
-    from translatewise.translations.routes import translations
+    from translatewise.translations.views import translations
     app.register_blueprint(translations)
 
     return app

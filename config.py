@@ -36,3 +36,4 @@ class TestingConfig(Config):
     DEBUG = True
     WTF_CSRF_ENABLED = False
     SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
+    PRESERVE_CONTEXT_ON_EXCEPTION = False
