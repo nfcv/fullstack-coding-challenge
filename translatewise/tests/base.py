@@ -1,12 +1,14 @@
 from flask_testing import TestCase
 from translatewise import create_app, db
-import fakeredis
+from fakeredis import FakeRedis
+from rq import Queue
 
 
 class BaseTestCase(TestCase):
     def create_app(self):
         app = create_app("config.TestingConfig")
-        app.redis = fakeredis.FakeRedis()
+        app.redis = FakeRedis()
+        app.task_queue = Queue("translatewise", connection=app.redis)
         return app
 
     def setUp(self):

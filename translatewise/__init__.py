@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from config import DevelopmentConfig
 from redis import Redis
-import rq
+from rq import Queue
 import rq_dashboard
 
 db = SQLAlchemy()
@@ -14,7 +14,7 @@ def create_app(config_class=DevelopmentConfig):
     app.config.from_object(config_class)
     app.register_blueprint(rq_dashboard.blueprint, url_prefix="/rq")
     app.redis = Redis.from_url(app.config['REDIS_URL'])
-    app.task_queue = rq.Queue('translatewise', connection=app.redis)
+    app.task_queue = Queue('translatewise', connection=app.redis)
 
     db.init_app(app)
 
