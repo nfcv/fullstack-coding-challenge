@@ -14,6 +14,7 @@ class UpdateTranslationsService(object):
 
         for t in translations:
             result = self.api.fetch_translation(uid=t.id)
+            print(result)
 
             if not result:
                 continue
