@@ -31,6 +31,3 @@ class Translation(db.Model):
             f"{self.translated}, "
             f"{self.word_count}, "
         )
-
-    def is_translated(self):
-        return self.status == RequestStatus.TRANSLATED.value
