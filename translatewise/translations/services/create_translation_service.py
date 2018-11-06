@@ -7,5 +7,5 @@ class CreateTranslationService(object):
     def __init__(self, repository: TranslationRepo):
         self.repository = repository
 
-    def create(self, translation: Translation):
-        self.repository.create(translation=translation)
+    def create(self, translation: Translation) -> Translation:
+        return self.repository.create(translation=translation)
