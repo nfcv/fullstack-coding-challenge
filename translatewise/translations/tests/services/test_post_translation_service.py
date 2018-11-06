@@ -1,4 +1,3 @@
-from translatewise.tests.base import BaseTestCase
 from translatewise.translations.models import Translation
 from translatewise.translations.services.post_translation_service import PostTranslationService
 from translatewise.translations.unbabel_api import UnbabelApi
