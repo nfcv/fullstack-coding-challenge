@@ -14,7 +14,7 @@ class TranslationHandler(object):
         self.repository = repository
         self.queue = queue
 
-    def request_translation(self, form: TranslationForm) -> Translation or None:
+    def request_translation(self, form: TranslationForm):
         if form.validate_on_submit():
             text = form.text.data
             translation = Translation(text=text)
@@ -22,11 +22,11 @@ class TranslationHandler(object):
             create_service.create(translation)
             TranslationQueueService(self.queue).enqueue_post_translation(translation)
             flash(f'Translation added!', 'success')
-            return translation
+            return
 
         error = form.errors['text'][0]
         flash(error, 'danger')
-        return None
+        return
 
     def get_translations_ordered_by_word_count(self) -> [Translation]:
         translations = GetTranslationsService(repository=self.repository).ordered_by_word_count()

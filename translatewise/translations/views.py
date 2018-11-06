@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, request, curren
 from translatewise.translations.forms import TranslationForm
 from translatewise.translations.handlers.translation_handler import TranslationHandler
 from translatewise.translations.repositories.translation_repo import TranslationRepo
+from translatewise.translations.view_models import TranslationListViewModel
 
 translations = Blueprint('translations', __name__)
 
@@ -16,4 +17,5 @@ def home():
         return redirect(url_for("translations.home"))
 
     translations = handler.get_translations_ordered_by_word_count()
-    return render_template("index.html", translations=translations, form=form)
+    translations_view_model = list(map(lambda t: TranslationListViewModel(t), translations))
+    return render_template("index.html", translations=translations_view_model, form=form)

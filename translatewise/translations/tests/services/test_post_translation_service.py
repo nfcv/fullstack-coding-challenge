@@ -3,9 +3,10 @@ from translatewise.translations.models import Translation
 from translatewise.translations.services.post_translation_service import PostTranslationService
 from translatewise.translations.unbabel_api import UnbabelApi
 from unittest.mock import MagicMock
+from unittest import TestCase
 
 
-class PostTranslationServiceTestCase(BaseTestCase):
+class PostTranslationServiceTestCase(TestCase):
 
     def test_post_translation_calls_external_service(self):
         api = UnbabelApi()

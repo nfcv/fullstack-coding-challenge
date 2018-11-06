@@ -7,9 +7,9 @@ from translatewise.translations.models import Translation
 
 class TranslationForm(FlaskForm):
     text = StringField(
-        'Insert Text', 
+        'Insert Text',
         validators=[
-            DataRequired(), 
+            DataRequired(),
             Unique(Translation, Translation.text, message="Translation already added!")
         ]
     )
