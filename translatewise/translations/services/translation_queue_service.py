@@ -3,7 +3,7 @@ from rq import Queue
 from rq.job import Job
 
 
-class TranslationQueueService(object):
+class QueueTranslationService(object):
 
     def __init__(self, queue: Queue):
         self.queue = queue
