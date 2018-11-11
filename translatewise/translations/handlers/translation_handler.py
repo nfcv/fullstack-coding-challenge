@@ -30,5 +30,4 @@ class TranslationHandler(object):
 
     def get_translations_ordered_by_word_count(self) -> [Translation]:
         translations = self.get_translations_service.ordered_by_word_count()
-        self.queue_translation_service.enqueue_update_translations_status()
         return translations

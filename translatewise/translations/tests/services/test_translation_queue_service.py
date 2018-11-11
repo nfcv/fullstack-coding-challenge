@@ -13,13 +13,11 @@ class QueueTranslationServiceTestCase(TestCase):
         QueueTranslationService(queue=queue).enqueue_post_translation(translation)
 
         queue.enqueue.assert_called_with('translatewise.translations.worker.post_translation',
-                                         translation,
-                                         result_ttl=60000)
+                                         translation)
 
     def test_enqueue_update_translations_status(self):
         queue = Mock()
 
         QueueTranslationService(queue=queue).enqueue_update_translations_status()
 
-        queue.enqueue.assert_called_with('translatewise.translations.worker.update_translations_status',
-                                         result_ttl=60000)
+        queue.enqueue.assert_called_with('translatewise.translations.worker.update_translations_status')

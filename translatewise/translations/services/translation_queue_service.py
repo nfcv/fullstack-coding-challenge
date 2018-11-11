@@ -11,12 +11,10 @@ class QueueTranslationService(object):
     def enqueue_post_translation(self, translation: Translation) -> Job:
         return self.queue.enqueue(
             'translatewise.translations.worker.post_translation',
-            translation,
-            result_ttl=60000
+            translation
         )
 
     def enqueue_update_translations_status(self) -> Job:
         return self.queue.enqueue(
-            'translatewise.translations.worker.update_translations_status',
-            result_ttl=60000
+            'translatewise.translations.worker.update_translations_status'
         )
