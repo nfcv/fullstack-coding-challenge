@@ -19,4 +19,8 @@ class TranslationPresenter(object):
 
     @property
     def status(self):
+        return self._translation.status
+
+    @property
+    def status_text(self):
         return self._translation.status.capitalize()

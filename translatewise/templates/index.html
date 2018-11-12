@@ -1,6 +1,5 @@
 {% extends "layout.html" %}
 {% block content %}
-
   <form method="POST" action="">
     {{ form.hidden_tag() }}
     
@@ -12,23 +11,24 @@
       </div>
   </form>
 
-  <table class="table table-dark">
-    <thead>
-      <tr>
-        <th scope="col">English</th>
-        <th scope="col">Spanish</th>
-        <th scope="col">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for translation in translations %}
-        <tr>
-          <th scope="row">{{ translation.text }}</th>
-          <td>{{ translation.translated_text }}</td>
-          <td>{{ translation.status }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
+  <div class="translations rounded">
+      <table class="table table-translations table-borderless">
+          <thead>
+            <tr>
+              <th scope="col">English</th>
+              <th scope="col">Spanish</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for translation in translations %}
+              <tr>
+                <td>{{ translation.text }}</td>
+                <th>{{ translation.translated_text }}</th>
+                <td class="{{ translation.status }}">{{ translation.status_text }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+  </div>
 {% endblock content %}

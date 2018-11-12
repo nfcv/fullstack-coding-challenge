@@ -1,4 +1,92 @@
 body {
-  background: #40316a;
-  color: white;
+  background: white;
+}
+
+/*** TITLE ***/
+#translewise-title {
+  color: #6b77e3;
+  font-weight: 100;
+  margin-top: 23px;
+  margin-bottom: 40px;
+}
+#translewise-title span {
+  font-style: italic;
+  font-weight: 300;
+}
+
+/*** TABLE ***/
+div.translations {
+  box-shadow: 0 0px 40px 0px rgba(0, 0, 0, 0.15);
+  color: #808080;
+  margin-bottom: 40px;
+}
+div.translations table {
+  overflow: hidden;
+}
+.table-translations > thead {
+  background-color: #6c7ae0;
+  color:white;
+}
+.table-translations > tbody > tr:nth-child(even) {
+  background-color: #f8f6ff;
+}
+.table-translations thead th:first-child {
+  border-radius: 8px 0 0 0;
+}
+.table-translations thead th:last-child {
+  border-radius: 0 8px 0 0;
+}
+.table-translations tbody tr:last-child td:first-child {
+  border-radius: 0 0 8px 0;
+}
+.table-translations tbody tr:last-child td:last-child {
+  border-radius: 0 0 0 8px;
+}
+.table-translations tbody .TRANSLATED {
+  color: #2ed573;
+}
+.table-translations tbody .PENDING {
+  color: #eccc68;
+}
+
+/*** INPUT ***/
+.input-translate {
+  width: 55%;
+  margin: auto;
+  padding: 0px 0px 15px 0;
+}
+@media only screen and (max-width: 1000px) {
+  .input-translate {
+    width: 100%;
+  }
+}
+.input-translate .input-group-append input[type=submit] {
+  background-image: linear-gradient(135deg,#7983ff,#5f9de9);
+  box-shadow: 0 0.25rem 0.5rem -0.1rem rgba(0,32,64,.15);
+  margin-left: 30px;
+  border-radius: 6px;
+  border: none;
+}
+.input-translate .input-group-append input[type=submit]:hover {
+  box-shadow: 0 0.40rem 0.8rem -0.1rem rgba(0,32,64,.15);
+}
+#text {
+  padding-left: 3px;
+  padding-bottom: 1px;
+  border-radius: 0px;
+  background-color: transparent;
+  background-image: linear-gradient(135deg,#7983ff,#5f9de9);
+  background-repeat: no-repeat;
+  background-position: 0 calc(100% + 3px),0 0;
+  background-size: 100% 3px;
+  box-shadow: none;
+  border: 0;
+  border-bottom: 3px solid #7983ff;
+  color: #808080;
+  -webkit-font-smoothing: antialiased;
+  outline: 0 none;
+  border-color: #7983ff;
+}
+#text:hover, #text:focus {
+  border-color: #7983ff;
 }
