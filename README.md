@@ -24,6 +24,4 @@ $ rq worker translatewise
 
 ## Requirements
 
-*Python Version:* 3.7.0
-
-
+__Python Version:__ 3.7.0
