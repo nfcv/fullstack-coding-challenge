@@ -23,7 +23,7 @@
           {% with messages = get_flashed_messages(with_categories=true) %}
               {% if messages %}
                 {% for category, message in messages %}
-                  <div class="alert alert-{{ category }}">
+                  <div class="alert alert-{{ category }} show">
                     {{ message }}
                   </div>
                 {% endfor %}
@@ -34,6 +34,12 @@
           {% endblock %}
         </div>
     </main>
-    <script src="" async defer></script>
+    <script async defer>
+        var alert = document.querySelector(".alert");
+        const fadeOutAfter = 3000;
+        setTimeout(function(){ 
+          alert.className = alert.className.replace("show", ""); 
+        }, fadeOutAfter);
+    </script>
   </body>
 </html>
