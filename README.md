@@ -2,7 +2,7 @@
 
 ## Setup
 
-1. Create an .env file with this example keys:
+Create an .env file with this example keys:
 ```python
 export UNBABEL_API_KEY="..."
 export UNBABEL_API_USERNAME="..."
