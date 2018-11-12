@@ -36,3 +36,7 @@ $ python manage.py test
 ```shell
 $ rq worker translatewise
 ```
+
+## Notes
+- This project uses heavily type hinting instead of "kwargs" approach. I think it provides a lot of value, not only helps the IDE, it also helps the team working on the code, since it knows exactly what arguments a function or an object needs and what it returns.
+- The front-end is very simplistic and probably wouldn't scale very well. Because I lost too much time with the back-end, I didn't spend to much time on front-end tooling.
